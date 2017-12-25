@@ -1,4 +1,4 @@
-from tokens import *
+from tokens import * # файл с настройками
 
 from datetime import datetime
 from subprocess import Popen, PIPE, STDOUT
@@ -11,7 +11,7 @@ import telepot
 
 
 
-poll = 300  # seconds
+poll = 300  # секунд
 shellexecution = []
 setpolling = []
 stopmarkup = {'keyboard': [['Stop']]}
@@ -33,7 +33,7 @@ class RPI3Bot(telepot.Bot):
         content_type, chat_type, chat_id = telepot.glance(msg)
 
         print("Your chat_id:" + str(chat_id)) 
-        if chat_id in adminchatid:  # Store adminchatid variable in tokens.py
+        if chat_id in adminchatid:  # подгружает токен и id администратора из файла tokens.py
             if content_type == 'text':
                 if msg['text'] == '/start' and chat_id not in shellexecution:
                     bot.sendMessage(chat_id, "Здравствуйте! для того чтобы начать работать, отправьте команду /shell" )
@@ -67,11 +67,11 @@ bot = RPI3Bot(TOKEN)
 bot.message_loop()
 tr = 0
 xx = 0
-# Keep the program running.
+# держит программу запущенной. через указанное время в переменной poll - перезапускает программу
 while 1:
     if tr == poll:
         tr = 0
         timenow = datetime.now()
       
-    time.sleep(10)  # 10 seconds
+    time.sleep(10)  # 10 секунд
     tr += 10
