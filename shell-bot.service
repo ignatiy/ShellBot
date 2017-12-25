@@ -1,0 +1,11 @@
+[Unit]
+Description=Telegram bot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/home/info/bot/botssh.sh 
+
+[Install]
+WantedBy=multi-user.target
